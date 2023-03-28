@@ -249,6 +249,7 @@ The command removes all the Kubernetes components associated with the chart and 
 | `plugins.image.pullSecrets`                  | Bitnami Shell image pull secrets                                                                              | `[]`                    |
 | `plugins.resources.limits`                   | The resources limits for the init container                                                                   | `{}`                    |
 | `plugins.resources.requests`                 | The requested resources for the init container                                                                | `{}`                    |
+| `plugins.containerSecurityContext.enabled`   | Enabled SonarQube&trade; init containers' Security Context                                                    | `false`                 |
 | `plugins.containerSecurityContext.runAsUser` | Set init container's Security Context runAsUser                                                               | `0`                     |
 
 ### Persistence Parameters

@@ -78,7 +78,9 @@ spec:
               mountPath: {{ .Values.provisioningFolder }}/extensions/plugins/
               subPath: extensions/plugins
           resources: {{- toYaml .Values.plugins.resources | nindent 12 }}
-          securityContext: {{- .Values.plugins.containerSecurityContext | toYaml | nindent 12 }}
+          {{- if .Values.plugins.containerSecurityContext.enabled }}
+          securityContext: {{- omit .Values.plugins.containerSecurityContext "enabled" | toYaml | nindent 12 }}
+          {{- end }}
         {{- end }}
         {{- if .Values.caCerts.enabled }}
         - name:  {{ printf "%s-ca-certs-initcontainer" (include "common.names.fullname" .) }}

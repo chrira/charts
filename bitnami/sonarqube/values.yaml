@@ -689,12 +689,14 @@ plugins:
     requests: {}
   ## Init container Container Security Context
   ## ref: https://kubernetes.io/docs/tasks/configure-pod-container/security-context/#set-the-security-context-for-a-container
+  ## @param plugins.containerSecurityContext.enabled Enabled SonarQube&trade; init containers' Security Context
   ## @param plugins.containerSecurityContext.runAsUser Set init container's Security Context runAsUser
   ## NOTE: when runAsUser is set to special value "auto", init container will try to chown the
   ##   data folder to auto-determined user&group, using commands: `id -u`:`id -G | cut -d" " -f2`
   ##   "auto" is especially useful for OpenShift which has scc with dynamic user ids (and 0 is not allowed)
   ##
   containerSecurityContext:
+    enabled: true
     runAsUser: 0
 
 ## @section Persistence Parameters

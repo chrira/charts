@@ -221,6 +221,8 @@ Set sonarqube.jvmOpts
         {{ printf "-Djavax.net.ssl.trustStore=/bitnami/sonarqube/certs/cacerts %s" .Values.jvmCeOpts | trim | quote }}
     {{- else if .Values.metrics.jmx.enabled -}}
         {{ printf "-Dcom.sun.management.jmxremote=true -Dcom.sun.management.jmxremote.ssl=false -Dcom.sun.management.jmxremote.authenticate=false -Dcom.sun.management.jmxremote.port=10443 -Dcom.sun.management.jmxremote.rmi.port=10444 %s" .Values.jvmCeOpts | trim | quote }}
+    {{- else if .Values.jvmOpts -}}
+        {{ printf "%s" .Values.jvmOpts | trim | quote }}
     {{- else -}}
         {{ printf "" }}
     {{- end -}}
@@ -232,6 +234,8 @@ Set sonarqube.jvmCEOpts
 {{- define "sonarqube.jvmCEOpts" -}}
     {{- if .Values.caCerts.enabled -}}
         {{ printf "-Djavax.net.ssl.trustStore=/bitnami/sonarqube/certs/cacerts %s" .Values.jvmCeOpts | trim | quote }}
+    {{- else if .Values.jvmCeOpts -}}
+        {{ printf "%s" .Values.jvmCeOpts | trim | quote }}
     {{- else -}}
         {{ printf "" }}
     {{- end -}}
